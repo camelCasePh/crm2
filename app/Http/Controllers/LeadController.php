@@ -16,7 +16,12 @@ class LeadController extends Controller
         //
         $leads = Lead::all();
 
-        return view('leads',compact('leads'));
+        $leads = Lead::latest()->paginate(6);
+
+        $count = 1;
+
+
+        return view('leads',compact('leads','count'))->with(request()->input('page'));
     }
 
     /**

@@ -83,7 +83,7 @@
                 <table class="table table-bordered table-hover">
                   <thead>
                     <tr>
-                      <th>id</th>
+                      <th>#</th>
                       <th>Company Name</th>
                       <th>Company Email</th>
                       <th>Company Number</th>
@@ -94,7 +94,7 @@
                     @foreach ($leads as $lead)
 
                     <tr data-widget="expandable-table" aria-expanded="false">
-                      <td>{{ $lead->id }}</td>
+                      <td>{{ $count++ }}</td>
                       <td>{{ $lead->company_name }}</td>
                       <td>{{ $lead->company_email }}</td>
                       <td>{{ $lead->company_number }}</td>
@@ -134,6 +134,10 @@
                     @endforeach
                   </tbody>
                 </table>
+                <div class="mt-5">
+                    {{ $leads->links() }}
+                </div>
+
 
                </div>
              </div>

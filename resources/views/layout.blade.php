@@ -33,7 +33,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand" style="border-bottom: 3px solid red;">
+  <nav class="main-header fixed-top navbar navbar-expand" style="border-bottom: 3px solid red;">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -171,7 +171,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-light-red elevation-2">
+  <aside class="main-sidebar fixed-left sidebar-light-red elevation-2">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="{{asset('assets/dist/img/itech-logo.png')}}" alt="AdminLTE Logo" class="brand-image" id="full-width">
@@ -180,7 +180,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar ">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
@@ -274,7 +274,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
-  <footer class="main-footer" style="background-color:black; color:#ffffff;">
+  <footer class="main-footer fixed-bottom" style="background-color:black; color:#ffffff;">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
       "Your innovative business solution partner!"
