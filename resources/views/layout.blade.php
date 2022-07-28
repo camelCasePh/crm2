@@ -17,6 +17,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{asset('/assets/plugins/fontawesome-free/css/all.min.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('/assets/dist/css/adminlte.min.css')}}">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
 </head>
 <style>
     .main-header{
@@ -171,7 +174,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar fixed-left sidebar-light-red elevation-2">
+  <aside class="main-sidebar  sidebar-light-red elevation-2 ">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="{{asset('assets/dist/img/itech-logo.png')}}" alt="AdminLTE Logo" class="brand-image" id="full-width">
@@ -180,7 +183,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar ">
+    <div class="sidebar  sticky-top">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">

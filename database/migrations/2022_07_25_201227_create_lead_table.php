@@ -18,7 +18,7 @@ class CreateLeadTable extends Migration
             $table->string('company_name');
             $table->string('company_email');
             $table->string('company_number');
-            $table->string('status');
+            $table->integer('status')->default(1);
 
             $table->timestamps();
         });

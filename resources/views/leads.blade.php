@@ -1,6 +1,7 @@
 @extends('layout')
 @section('content')
 
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -59,7 +60,7 @@
                     <label class="form-label">Company Number</label>
                     <input type="text" name="companyNumber" class="form-control">
                   </div>
-                  <input type="hidden" name="status" value="active">
+                  {{-- <input type="hidden" name="status" value="active"> --}}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -73,6 +74,8 @@
             {{--  --}}
 
 
+
+
           <div class="col-12" >
             <div class="card">
               <div class="card-header">
@@ -80,10 +83,10 @@
               </div>
               <!-- ./card-header -->
               <div class="card-body">
-                <table class="table table-bordered table-hover">
+                <table id="datatable" class="table table-bordered table-hover">
                   <thead>
                     <tr>
-                      <th>#</th>
+                      <th>id</th>
                       <th>Company Name</th>
                       <th>Company Email</th>
                       <th>Company Number</th>
@@ -94,18 +97,66 @@
                     @foreach ($leads as $lead)
 
                     <tr data-widget="expandable-table" aria-expanded="false">
-                      <td>{{ $count++ }}</td>
+                      <td>{{ $lead->id }}</td>
                       <td>{{ $lead->company_name }}</td>
                       <td>{{ $lead->company_email }}</td>
                       <td>{{ $lead->company_number }}</td>
                       <td>
+                            <div class="d-flex flex-row justify-content-center">
+                                {{-- <button class="btn btn-dark edit pt-3 pl-4 pr-4 mr-4" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a> --}}
+                                  <div>
+                                             <a href="#editModal{{ $lead->id }}" class="btn btn-dark edit pt-2 pb-2 pl-4 pr-4 mr-4" data-bs-toggle="modal" {{-- data-bs-target="#editModal" --}}>Edit</a>
+                                  </div>
 
-                            <form action="#" method="POST">
-                                <a href="#" class="btn btn-dark ">Edit</a>
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger ">Delete</button>
-                            </form>
+    <!-- Edit Modal -->
+  <div class="modal fade" id="editModal{{ $lead->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Lead</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="{{ route('update.leads') }}" method="POST" id="editForm">
+            @csrf
+            @method('PUT')
+        <div class="modal-body">
+
+
+                <input type="hidden" name="id" value="{{ $lead->id }}">
+                <div class="mb-3">
+                  <label class="form-label">Company Name</label>
+                  <input type="text" name="updateCompanyName" id="companyName" class="form-control" value="{{ $lead->company_name }}" >
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Company Email</label>
+                  <input type="email" name="updateCompanyEmail" id="companyEmail" class="form-control" value="{{ $lead->company_email }}" >
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Company Number</label>
+                    <input type="text" name="updateCompanyNumber" id="companyNumber" class="form-control" value="{{ $lead->company_number }}" >
+                  </div>
+                  <input type="hidden" name="status" value="active">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+
+            {{--  --}}
+                                  <div>
+                                            <form action="#" method="POST">
+                                                @csrf
+                                                {{-- @method('DELETE') --}}
+                                                <input type="submit" class="btn btn-danger pt-2 pb-2 pl-3 pr-3"  value="Remove">
+                                            </form>
+                                  </div>
+
+                            </div>
+
 
                       </td>
                     </tr>
@@ -153,4 +204,33 @@
 @endsection()
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+<script src = "https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js">
+</script>
+<script src = "https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js">
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
 
+        var table = $('#datatable').DataTable();
+            //Start Edit Record
+        table.on('click','.edit', function(){
+
+            $tr = $(this).closest('tr');
+            if($(tr).hasClass('child')){
+                $tr = $tr.prev('.parent');
+            }
+
+            var data = table.row($tr).data();
+            console.log(data);
+            $('#company_name').val(data[1]);
+            $('#company_email').val(data[2]);
+            $('#company_number').val(data[3]);
+
+            $('#editForm').attr('action','/leads/'+data[0]);
+            $('#editModal').show();
+        });
+
+        //Edit Record
+
+    });
+ </script>

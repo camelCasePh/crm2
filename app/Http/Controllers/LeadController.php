@@ -31,6 +31,7 @@ class LeadController extends Controller
      */
     public function create()
     {
+
         //
     }
 
@@ -58,7 +59,7 @@ class LeadController extends Controller
             $leads->company_name = $request->input('companyName');
             $leads->company_email = $request->input('companyEmail');
             $leads->company_number = $request->input('companyNumber');
-            $leads->status = $request->input('status');
+            // $leads->status = $request->input('status');
 
 
             $leads->save();
@@ -92,6 +93,7 @@ class LeadController extends Controller
     public function edit($id)
     {
         //
+        return view('index.leads');
     }
 
     /**
@@ -101,9 +103,24 @@ class LeadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request , Lead $updateleads)
     {
         //
+    //create a new product
+        //  Lead::create($request->all());
+
+        $id = $request->input('id');
+
+        $updateleads = Lead::find($id);
+
+        $updateleads->company_name = $request->input('updateCompanyName');
+        $updateleads->company_email = $request->input('updateCompanyEmail');
+        $updateleads->company_number = $request->input('updateCompanyNumber');
+        // $leads->status = $request->input('status');
+        $updateleads->update();
+
+        return redirect()->route('index.leads')->with('success','Lead Updated Successfully!');
+
     }
 
     /**
@@ -115,5 +132,7 @@ class LeadController extends Controller
     public function destroy($id)
     {
         //
+
+
     }
 }
