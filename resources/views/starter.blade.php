@@ -36,13 +36,156 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">XYZ Company</h5>
-                <p class="card-text">
-                  xyz@gmail.com
-                </p>
-                <a href="#" class="card-link">View</a>
-                <a href="#" class="card-link">Edit</a>
-              </div>
+
+
+
+                <div class="row">
+                    {{-- <div class="col-12 col-sm-6 col-md-3"> --}}
+                        <div class="col-lg-3 col-6">
+                            <!-- small card -->
+                            <div class="small-box bg-success">
+                              <div class="inner">
+
+
+
+                                <h3>{{ $activeLeads }}</h3>
+
+                                <p>Active Leads</p>
+                              </div>
+                              <div class="icon">
+                                <i class="fas fa-chart-pie"></i>
+                              </div>
+
+                            </div>
+                          </div>
+                    {{-- </div> --}}
+                    <!-- /.col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small card -->
+                        <div class="small-box bg-danger">
+                          <div class="inner">
+                            <h3>{{ $inActiveLeads }}</h3>
+
+                            <p>In-active Leads</p>
+                          </div>
+                          <div class="icon">
+                            <i class="fas fa-chart-pie"></i>
+                          </div>
+
+                        </div>
+                      </div>
+                    <!-- /.col -->
+
+                    <!-- fix for small devices only -->
+                    <div class="clearfix hidden-md-up"></div>
+
+                    <div class="col-lg-3 col-6">
+                        <!-- small card -->
+                        <div class="small-box bg-info">
+                          <div class="inner">
+                            <h3>{{ $totalLeads }}</h3>
+
+                            <p>Total Leads</p>
+                          </div>
+                          <div class="icon">
+                            <i class="fas fa-chart-pie"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-6">
+                        <!-- small card -->
+                        <div class="small-box bg-secondary">
+                          <div class="inner">
+                            <h3>0</h3>
+
+                            <p>Total Users</p>
+                          </div>
+                          <div class="icon">
+                            <i class="fas fa-chart-pie"></i>
+                          </div>
+                        </div>
+                      </div>
+                    <!-- /.col -->
+                        <!-- /.info-box-content -->
+                      </div>
+                      <!-- /.info-box -->
+                    </div>
+                    <!-- /.col -->
+                  </div>
+                  <!-- /.row -->
+
+
+                {{-- lead table --}}
+                <div class="col-12" >
+                    <div class="card">
+                      <div class="card-header">
+                        <h3 class="card-title">Leads Information</h3>
+                      </div>
+                      <!-- ./card-header -->
+                      <div class="card-body">
+                        <table id="datatable" class="table table-bordered table-hover">
+                          <thead>
+                            <tr>
+                              <th>id</th>
+                              <th>Company Name</th>
+                              <th>Company Email</th>
+                              <th>Company Number</th>
+
+                            </tr>
+                          </thead>
+                          <tbody>
+                            @foreach ($leads as $lead)
+
+                                @if ($lead->status == 1)
+
+
+
+                            <tr data-widget="expandable-table" aria-expanded="false">
+                              <td>{{ $lead->id }}</td>
+                              <td>{{ $lead->company_name }}</td>
+                              <td>{{ $lead->company_email }}</td>
+                              <td>{{ $lead->company_number }}</td>
+                            </tr>
+
+
+                            <tr class="expandable-body">
+                              <td colspan="5">
+                                <div class="container">
+                                    <div class="d-flex flex-column">
+                                      <div >
+                                        <strong>Company Name:</strong> {{ $lead->company_name }}
+                                      </div>
+                                      <div >
+                                        <strong>Company Email:</strong> {{ $lead->company_email }}
+                                      </div>
+                                      <div >
+                                        <strong>Column Number:</strong> {{ $lead->company_number }}
+                                      </div>
+                                      <div>
+                                        <strong>Additional Info:</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt saepe nesciunt modi fugit perspiciatis, accusamus maxime dicta fugiat, at ullam totam est ex blanditiis nostrum, rerum quo harum error natus?
+
+                                      </div>
+                                    </div>
+                                  </div>
+                            </tr>
+                                @endif
+                            @endforeach
+                          </tbody>
+                        </table>
+                        <div class="mt-5">
+                            {{ $leads->links() }}
+                        </div>
+
+
+                       </div>
+                     </div>
+                  </div>
+
+
+                {{-- /lead table --}}
+
+
+
             </div>
           <!-- /.col-md-6 -->
         </div>

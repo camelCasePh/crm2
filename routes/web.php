@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LeadController;
+use App\Http\Controllers\DashboardController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +17,11 @@ use App\Http\Controllers\LeadController;
 |
 */
 
-Route::get('/', function () {
-    return view('starter');
-})->name('starter');
+// Route::get('/', function () {
+//     return view('starter');
+// })->name('starter');
+
+Route::get('/',[DashboardController::class,'index'])->name('starter');
 
 
 Route::get('login', [AuthController::class, 'login'])->name('login');

@@ -49,12 +49,15 @@
 
 
                 <div class="mb-3">
-                  <label class="form-label">Company Name</label>
+                  <label class="form-label ">Company Name</label>
                   <input type="text" name="companyName" class="form-control">
                 </div>
                 <div class="mb-3">
-                  <label class="form-label">Company Email</label>
-                  <input type="email" name="companyEmail" class="form-control">
+                  <label class="form-label ">Company Email</label>
+                  <input type="email" name="companyEmail" class="form-control @error('email') is-invalid @enderror form-control">
+                  @error('email')
+                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Company Number</label>
