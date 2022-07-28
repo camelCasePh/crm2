@@ -96,6 +96,10 @@
                   <tbody>
                     @foreach ($leads as $lead)
 
+                        @if ($lead->status == 1)
+
+
+
                     <tr data-widget="expandable-table" aria-expanded="false">
                       <td>{{ $lead->id }}</td>
                       <td>{{ $lead->company_name }}</td>
@@ -222,6 +226,7 @@
                             </div>
                           </div>
                     </tr>
+                        @endif
                     @endforeach
                   </tbody>
                 </table>
