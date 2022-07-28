@@ -129,10 +129,18 @@ class LeadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function remove(Request $request , Lead $removeleads)
     {
         //
+        $id = $request->input('id');
 
+        $removeleads = Lead::find($id);
+
+        $removeleads->status = $request->input('status');
+
+        $removeleads->update();
+
+        return redirect()->route('index.leads')->with('success','Lead Remove Successfully!');
 
     }
 }

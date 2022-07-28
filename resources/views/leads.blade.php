@@ -135,7 +135,7 @@
                     <label class="form-label">Company Number</label>
                     <input type="text" name="updateCompanyNumber" id="companyNumber" class="form-control" value="{{ $lead->company_number }}" >
                   </div>
-                  <input type="hidden" name="status" value="active">
+                  {{-- <input type="hidden" name="status" value="active"> --}}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -148,14 +148,54 @@
 
             {{--  --}}
                                   <div>
-                                            <form action="#" method="POST">
-                                                @csrf
-                                                {{-- @method('DELETE') --}}
-                                                <input type="submit" class="btn btn-danger pt-2 pb-2 pl-3 pr-3"  value="Remove">
-                                            </form>
+                                    <a href="#removeModal{{ $lead->id }}" class="btn btn-danger remove pt-2 pb-2 pl-2 pr-2 mr-4" data-bs-toggle="modal" {{-- data-bs-target="#editModal" --}}>Remove</a>
+
                                   </div>
 
+
+
                             </div>
+
+                                         <!-- Remove Modal -->
+  <div class="modal fade" id="removeModal{{ $lead->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Lead</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="{{ route('remove.leads') }}" method="POST" id="removeForm">
+            @csrf
+            @method('PUT')
+        <div class="modal-body">
+
+
+                <input type="hidden" name="id" value="{{ $lead->id }}">
+                <div class="mb-3">
+                  {{-- <label class="form-label">Company Name</label>
+                  <input type="text" name="updateCompanyName" id="companyName" class="form-control" value="{{ $lead->company_name }}" >
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Company Email</label>
+                  <input type="email" name="updateCompanyEmail" id="companyEmail" class="form-control" value="{{ $lead->company_email }}" >
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Company Number</label>
+                    <input type="text" name="updateCompanyNumber" id="companyNumber" class="form-control" value="{{ $lead->company_number }}" >
+                  </div> --}}
+                  <h5>Are you sure you want to remove this Lead?</h5>
+                  <input type="hidden" name="status" value=0>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary pl-4 pr-4">Yes</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+
+            {{--  --}}
 
 
                       </td>

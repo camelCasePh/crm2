@@ -27,3 +27,4 @@ Route::get('leads', [LeadController::class, 'index'])->name('index.leads');
 Route::post('leads', [LeadController::class, 'store'])->name('store.leads');
 //Route::patch('leads', [LeadController::class, 'update'])->name('update.leads');
 Route::put('leads/update',[LeadController::class, 'update'])->name('update.leads');
+Route::put('leads/remove',[LeadController::class, 'remove'])->name('remove.leads');
