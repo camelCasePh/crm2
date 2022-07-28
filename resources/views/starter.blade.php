@@ -93,15 +93,15 @@
                         </div>
                       </div>
                       <div class="col-lg-3 col-6">
-                        <!-- small card -->
-                        <div class="small-box bg-secondary">
+                        <!-- small box -->
+                        <div class="small-box bg-warning">
                           <div class="inner">
                             <h3>0</h3>
 
-                            <p>Total Users</p>
+                            <p>User Registrations</p>
                           </div>
                           <div class="icon">
-                            <i class="fas fa-chart-pie"></i>
+                            <i class="ion ion-person-add"></i>
                           </div>
                         </div>
                       </div>

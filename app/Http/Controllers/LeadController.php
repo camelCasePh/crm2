@@ -140,7 +140,19 @@ class LeadController extends Controller
 
         $removeleads->update();
 
-        return redirect()->route('index.leads')->with('success','Lead Remove Successfully!');
+        return redirect()->route('index.leads')->with('success','Lead Removed Successfully!');
+
+    }
+
+    public function removeAll(Request $request , Lead $removeAllLeads){
+        $removeAllLeads = Lead::all();
+
+        foreach($removeAllLeads as $removeAllLead){
+            $removeAllLead->status =$request->input('status');
+            $removeAllLead->update();
+        }
+        return redirect()->route('index.leads')->with('success','All Lead Removed Successfully!');
+
 
     }
 }

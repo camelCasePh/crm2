@@ -81,8 +81,37 @@
 
           <div class="col-12" >
             <div class="card">
-              <div class="card-header">
+              <div class="card-header d-flex">
                 <h3 class="card-title">Leads Information</h3>
+                <a href="#removeAllModal" class="btn btn-danger remove pt-2 pb-2 pl-2 pr-2 ml-auto" data-bs-toggle="modal" {{-- data-bs-target="#editModal" --}}>Remove All</a>
+
+                </div>
+                                         <!-- Remove all Modal -->
+  <div class="modal fade" id="removeAllModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Lead</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="{{ route('removeall.leads') }}" method="POST" id="removeForm">
+            @csrf
+            @method('PUT')
+        <div class="modal-body">
+                <div class="mb-3">
+                  <h5>Are you sure you want to remove all Leads?</h5>
+                  <input type="hidden" name="status" value=0>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary pl-4 pr-4">Yes</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+
+            {{--  --}}
               </div>
               <!-- ./card-header -->
               <div class="card-body">
